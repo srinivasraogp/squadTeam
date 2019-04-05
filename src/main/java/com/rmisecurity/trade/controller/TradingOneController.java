@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +26,13 @@ public class TradingOneController {
 
 	
 	@PostMapping("/rmisecurity/tradestock")
-	public void saveStock(@Valid @RequestBody TradeOneModel stock) {
+	public String saveStock(@Valid @RequestBody TradeOneModel stock) {
 		tradeOneService.saveTradeStock(stock);
+	
+	
+		
 		System.out.println("saved");
+		return "Data Saved";
 	}
 	
 	@GetMapping("/rmisecurity/stmt/{userId}/stockname")
