@@ -1,6 +1,9 @@
 package com.rmisecurity.trade.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +25,17 @@ public class TradeOneServiceImp implements TradeOneService {
 		
 	}
 
+	@Override
+	public List<TradeOneModel> getTradeDetails(String userId) {
+	 // TODO Auto-generated method stub
+	  List <TradeOneModel> list = tradeRepo.findAll();
+	  List <TradeOneModel> listOfStocks = new ArrayList();
+	  for(int i = 0; i<list.size(); i++) {
+	   if(list.get(i).getUserName().equalsIgnoreCase(userId)) {
+	    listOfStocks.add(list.get(i));
+	   }
+	  }
+	  return listOfStocks;
+	}
 
 }
